@@ -1,0 +1,468 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1.0,
+        maximum-scale=1.0, user-scalable=no">
+
+  <meta name="theme-color" content="#0b1220">
+  <meta name="description"
+        content="Ultimate Car Parking Simulator - a mobile-friendly 2D parking game">
+
+  <title>Ultimate Car Parking Simulator</title>
+
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+  <main id="gameApp" class="game-app">
+
+    <!-- TOP HEADER -->
+    <header class="top-header">
+      <button id="menuBtn" class="icon-btn"
+              aria-label="Open menu">☰</button>
+
+      <div class="brand">
+        <div class="brand-icon">🚘</div>
+        <div>
+          <h1>ULTIMATE <span>PARKING</span></h1>
+          <p>DRIVING SIMULATOR PRO</p>
+        </div>
+      </div>
+
+      <button id="soundBtn" class="icon-btn"
+              aria-label="Toggle sound">🔊</button>
+    </header>
+
+    <!-- PLAYER INFORMATION -->
+    <section class="player-bar">
+      <div class="player-info">
+        <div class="avatar">👤</div>
+        <div>
+          <strong id="playerName">DRIVER</strong>
+          <small id="rankText">ROOKIE DRIVER</small>
+        </div>
+      </div>
+
+      <div class="wallet">
+        <span>🪙</span>
+        <strong id="coinText">0000</strong>
+        <button id="shopBtn" aria-label="Coin shop">+</button>
+      </div>
+    </section>
+
+    <!-- MAIN GAME NAVIGATION -->
+    <nav class="main-tabs" aria-label="Game navigation">
+      <button class="tab-btn active"
+              data-screen="home">HOME</button>
+      <button class="tab-btn"
+              data-screen="garage">GARAGE</button>
+      <button class="tab-btn"
+              data-screen="levels">LEVELS</button>
+      <button class="tab-btn"
+              data-screen="missions">MISSIONS</button>
+    </nav>
+
+    <!-- HOME SCREEN -->
+    <section id="homeScreen" class="screen active">
+
+      <div class="hero-panel">
+        <div class="hero-content">
+          <span class="eyebrow">THE ULTIMATE CHALLENGE</span>
+          <h2>MASTER THE<br><span>PARKING LOT</span></h2>
+
+          <p>
+            Drive precisely. Avoid obstacles.
+            Become a parking legend.
+          </p>
+
+          <div class="hero-tags">
+            <span>🏁 20 LEVELS</span>
+            <span>🚘 CAR COLLECTION</span>
+          </div>
+
+          <button id="playBtn" class="primary-btn">
+            <span>▶</span> PLAY NOW
+          </button>
+        </div>
+
+        <div class="hero-car" aria-hidden="true">🏎️</div>
+      </div>
+
+      <!-- QUICK STATS -->
+      <div class="section-heading">
+        <h3>YOUR PROGRESS</h3>
+        <span>CAREER</span>
+      </div>
+
+      <div class="progress-grid">
+        <article class="progress-card">
+          <span class="card-icon">🏆</span>
+          <small>BEST SCORE</small>
+          <strong id="bestScoreText">00000</strong>
+        </article>
+
+        <article class="progress-card">
+          <span class="card-icon">🅿️</span>
+          <small>LEVELS CLEARED</small>
+          <strong id="completedText">0 / 20</strong>
+        </article>
+
+        <article class="progress-card">
+          <span class="card-icon">🚘</span>
+          <small>SELECTED CAR</small>
+          <strong id="selectedCarText">SPORTS</strong>
+        </article>
+
+        <article class="progress-card">
+          <span class="card-icon">⭐</span>
+          <small>EXPERIENCE</small>
+          <strong id="xpText">0 XP</strong>
+        </article>
+      </div>
+
+      <!-- FEATURED LEVEL -->
+      <div class="section-heading">
+        <h3>CONTINUE CAREER</h3>
+        <span id="careerLabel">LEVEL 01</span>
+      </div>
+
+      <article class="career-card">
+        <div class="career-art">🅿️</div>
+
+        <div class="career-details">
+          <span class="level-badge">BEGINNER</span>
+          <h3>City Parking</h3>
+          <p>Learn to control your car.</p>
+
+          <div class="mini-progress">
+            <div id="careerProgress"></div>
+          </div>
+
+          <small id="careerProgressText">0% COMPLETE</small>
+        </div>
+
+        <button id="continueBtn"
+                class="round-btn"
+                aria-label="Continue career">▶</button>
+      </article>
+
+      <!-- DAILY CHALLENGE -->
+      <article class="daily-card">
+        <div>
+          <span class="eyebrow">DAILY CHALLENGE</span>
+          <h3>Perfect Parking</h3>
+          <p>Park without hitting obstacles.</p>
+          <strong>REWARD: 🪙 100</strong>
+        </div>
+
+        <div class="daily-icon">🎯</div>
+      </article>
+
+    </section>
+
+    <!-- GARAGE SCREEN -->
+    <section id="garageScreen" class="screen">
+      <div class="section-heading">
+        <h2>CAR GARAGE</h2>
+        <span>COLLECTION</span>
+      </div>
+
+      <div class="garage-preview">
+        <span class="eyebrow">CURRENT VEHICLE</span>
+        <div id="garageCarArt" class="garage-car-art">🏎️</div>
+        <h2 id="garageCarName">Street Racer</h2>
+        <p id="garageCarDescription">
+          Balanced speed and handling.
+        </p>
+
+        <div class="car-stats">
+          <div>
+            <span>SPEED</span>
+            <div class="stat-track">
+              <div id="speedStat" class="stat-fill"></div>
+            </div>
+          </div>
+
+          <div>
+            <span>HANDLING</span>
+            <div class="stat-track">
+              <div id="handlingStat" class="stat-fill"></div>
+            </div>
+          </div>
+
+          <div>
+            <span>BRAKES</span>
+            <div class="stat-track">
+              <div id="brakesStat" class="stat-fill"></div>
+            </div>
+          </div>
+        </div>
+
+        <button id="selectCarBtn" class="primary-btn">
+          SELECT VEHICLE
+        </button>
+      </div>
+
+      <div class="section-heading">
+        <h3>AVAILABLE CARS</h3>
+        <span>YOUR FLEET</span>
+      </div>
+
+      <div id="carGrid" class="car-grid">
+        <!-- JavaScript will add car cards here -->
+      </div>
+    </section>
+
+    <!-- LEVEL SELECT SCREEN -->
+    <section id="levelsScreen" class="screen">
+      <div class="section-heading">
+        <h2>SELECT LEVEL</h2>
+        <span id="levelCountText">20 MISSIONS</span>
+      </div>
+
+      <div class="level-filters">
+        <button class="filter-btn active"
+                data-filter="all">ALL</button>
+        <button class="filter-btn"
+                data-filter="easy">EASY</button>
+        <button class="filter-btn"
+                data-filter="medium">MEDIUM</button>
+        <button class="filter-btn"
+                data-filter="hard">HARD</button>
+      </div>
+
+      <div id="levelGrid" class="level-grid">
+        <!-- JavaScript will generate level buttons -->
+      </div>
+    </section>
+
+    <!-- MISSIONS SCREEN -->
+    <section id="missionsScreen" class="screen">
+      <div class="section-heading">
+        <h2>MISSIONS</h2>
+        <span>GET REWARDS</span>
+      </div>
+
+      <article class="mission-card">
+        <div class="mission-icon">🎯</div>
+        <div class="mission-info">
+          <h3>Perfect Driver</h3>
+          <p>Complete a level without collision.</p>
+          <div class="mini-progress">
+            <div id="perfectMissionProgress"></div>
+          </div>
+          <small id="perfectMissionText">0 / 1</small>
+        </div>
+        <strong>🪙 100</strong>
+      </article>
+
+      <article class="mission-card">
+        <div class="mission-icon">🏁</div>
+        <div class="mission-info">
+          <h3>Career Driver</h3>
+          <p>Complete five parking levels.</p>
+          <div class="mini-progress">
+            <div id="careerMissionProgress"></div>
+          </div>
+          <small id="careerMissionText">0 / 5</small>
+        </div>
+        <strong>🪙 250</strong>
+      </article>
+
+      <article class="mission-card">
+        <div class="mission-icon">⭐</div>
+        <div class="mission-info">
+          <h3>High Scorer</h3>
+          <p>Earn 1000 points.</p>
+          <div class="mini-progress">
+            <div id="scoreMissionProgress"></div>
+          </div>
+          <small id="scoreMissionText">0 / 1000</small>
+        </div>
+        <strong>🪙 300</strong>
+      </article>
+    </section>
+
+    <!-- ACTUAL GAME SCREEN -->
+    <section id="playScreen" class="screen">
+
+      <div class="game-toolbar">
+        <button id="backToMenuBtn" class="toolbar-btn">
+          ← MENU
+        </button>
+
+        <div class="game-level">
+          <small>MISSION</small>
+          <strong id="gameLevelText">LEVEL 01</strong>
+        </div>
+
+        <button id="pauseBtn" class="toolbar-btn">
+          Ⅱ PAUSE
+        </button>
+      </div>
+
+      <div class="game-hud">
+        <div class="hud-item">
+          <small>SCORE</small>
+          <strong id="gameScoreText">0000</strong>
+        </div>
+
+        <div class="hud-item">
+          <small>TIME</small>
+          <strong id="gameTimeText">90</strong>
+        </div>
+
+        <div class="hud-item">
+          <small>FUEL</small>
+          <strong id="fuelText">100%</strong>
+        </div>
+
+        <div class="hud-item">
+          <small>HITS</small>
+          <strong id="gameHitsText">0</strong>
+        </div>
+      </div>
+
+      <div class="canvas-container">
+        <canvas id="gameCanvas"
+                width="480"
+                height="720"
+                aria-label="Car parking game area">
+        </canvas>
+
+        <div id="gameOverlay" class="game-overlay">
+          <div class="overlay-panel">
+            <div id="overlayIcon" class="overlay-icon">🏎️</div>
+            <h2 id="overlayTitle">READY TO DRIVE?</h2>
+            <p id="overlayMessage">
+              Reach the parking bay without damaging your car.
+            </p>
+            <button id="overlayActionBtn" class="primary-btn">
+              START MISSION
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <div class="mission-hud">
+        <div class="mission-target-icon">P</div>
+        <div>
+          <small>OBJECTIVE</small>
+          <strong id="objectiveText">Park in the highlighted bay</strong>
+        </div>
+        <div class="target-status" id="targetStatus">ACTIVE</div>
+      </div>
+
+      <!-- MOBILE DRIVING CONTROLS -->
+      <div class="driving-controls">
+        <div class="steering-controls">
+          <button class="drive-btn steering-btn"
+                  data-control="left"
+                  aria-label="Steer left">◀</button>
+
+          <button class="drive-btn steering-btn"
+                  data-control="right"
+                  aria-label="Steer right">▶</button>
+        </div>
+
+        <div class="pedal-controls">
+          <button class="drive-btn reverse-btn"
+                  data-control="reverse">
+            <span>▼</span>
+            <small>REVERSE</small>
+          </button>
+
+          <button class="drive-btn brake-btn"
+                  data-control="brake">
+            <span>■</span>
+            <small>BRAKE</small>
+          </button>
+
+          <button class="drive-btn accelerate-btn"
+                  data-control="forward">
+            <span>▲</span>
+            <small>DRIVE</small>
+          </button>
+        </div>
+      </div>
+
+      <div class="game-footer">
+        <span>🚦 DRIVE CAREFULLY</span>
+        <span id="speedText">0 KM/H</span>
+      </div>
+    </section>
+
+    <!-- SETTINGS SCREEN -->
+    <section id="settingsScreen" class="screen">
+      <div class="section-heading">
+        <h2>SETTINGS</h2>
+        <span>GAME OPTIONS</span>
+      </div>
+
+      <div class="settings-card">
+        <label for="playerNameInput">Driver name</label>
+        <input id="playerNameInput"
+               type="text"
+               maxlength="16"
+               placeholder="Enter driver name">
+
+        <label class="setting-row" for="soundToggle">
+          <span>
+            <strong>Sound effects</strong>
+            <small>Enable game audio</small>
+          </span>
+          <input id="soundToggle" type="checkbox" checked>
+        </label>
+
+        <label class="setting-row" for="vibrationToggle">
+          <span>
+            <strong>Vibration</strong>
+            <small>Mobile feedback</small>
+          </span>
+          <input id="vibrationToggle" type="checkbox" checked>
+        </label>
+
+        <button id="saveSettingsBtn" class="primary-btn">
+          SAVE SETTINGS
+        </button>
+      </div>
+
+      <button id="resetProgressBtn" class="danger-btn">
+        RESET ALL PROGRESS
+      </button>
+    </section>
+
+    <!-- SIDE MENU -->
+    <aside id="sideMenu" class="side-menu" aria-hidden="true">
+      <div class="menu-heading">
+        <h2>GAME MENU</h2>
+        <button id="closeMenuBtn" class="icon-btn"
+                aria-label="Close menu">✕</button>
+      </div>
+
+      <button class="menu-link" data-go="home">🏠 Home</button>
+      <button class="menu-link" data-go="garage">🚘 Garage</button>
+      <button class="menu-link" data-go="levels">🗺️ Levels</button>
+      <button class="menu-link" data-go="missions">🏆 Missions</button>
+      <button class="menu-link" data-go="settings">⚙️ Settings</button>
+
+      <div class="menu-bottom">
+        <strong>ULTIMATE PARKING PRO</strong>
+        <small>Mobile Edition</small>
+      </div>
+    </aside>
+
+    <div id="menuBackdrop" class="menu-backdrop"></div>
+
+    <!-- NOTIFICATION -->
+    <div id="toast" class="toast" role="status"
+         aria-live="polite"></div>
+
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>
